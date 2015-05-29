@@ -83,12 +83,13 @@ RUN mv /tmp/magento /app -f
 #RUN mv /var/www/html/magento/.htaccess /var/www/html/
 RUN cd /app && wget http://sourceforge.net/projects/adminer/files/latest/download?source=files
 RUN cd /app && mv download\?source\=files adminer.php
-RUN chmod -R o+w /app/media /app/var
 RUN chmod o+w /app/app/etc
 
 # Sample data
 RUN cd /app/media && cp -R /tmp/magento-sample-data-1.9.1.0/media/* .
 RUN cd /app/skin && cp -R /tmp/magento-sample-data-1.9.1.0/skin/* .
+
+RUN chmod -R o+w /app/media /app/var
 
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 # Add volumes for MySQL 
